@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.10.1";                       // keep in sync with sw.js CACHE_VERSION, the footer and README
+  var VERSION = "2026.10.2";                       // keep in sync with sw.js CACHE_VERSION, the footer and README
   var STORE = "com.onairgarage.shownotesai.";
   var I18n = window.AppI18n;
 

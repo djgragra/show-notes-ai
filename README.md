@@ -6,7 +6,7 @@ Turn a radio show transcript or outline into ready-to-publish show notes with th
 - Web app: https://onairgarage.com/apps/show-notes-ai/
 - Author: Graziano Melzi · OnAir Garage — hello@onairgarage.com
 - License: MIT (see `LICENSE`)
-- Version: 2026.10.1
+- Version: 2026.10.2
 
 ## What it does
 
@@ -66,7 +66,7 @@ Results as of October 2026. This is not a certified tool; it does not validate t
 | Mock data per provider (`dev/providers.test.js`) | Request URL, headers and body for each provider; reply parsing; truncation flags; empty/malformed replies; the key never in a URL or body; local address limited to localhost | 12 tests pass | `node --test dev/providers.test.js` |
 | Prompt tests (`dev/prompt.test.js`) | Transcript only in the user message; safety rules always present; options change the instructions; fallbacks | 7 tests pass | `node --test dev/prompt.test.js` |
 | Static-app rules (`dev/static.test.js`) | CSP `connect-src` equals the provider list; no inline code; relative paths; precache complete; versions aligned; no `console` in the tool; WCAG AA contrast (≥ 4.5:1) of text, accent and button colours in both themes | 6 tests pass | `node --test dev/static.test.js` |
-| Translations (`dev/example.test.js`) | Same keys and placeholders in en/it/es; every key used by the page exists | 5 tests pass | `node --test dev/example.test.js` |
+| Translations (`dev/example.test.js`) | Same keys and placeholders in en/it/es; every key used by the page exists; the generic HTTP error message mentions the API key | 6 tests pass | `node --test dev/example.test.js` |
 | Providers' CORS (`dev/check-cors.sh`) | Each provider answers the browser preflight from `https://onairgarage.com` and allows the headers the app sends (no key and no text sent) | 5/5 pass on 2026-10-01 | `bash dev/check-cors.sh` |
 | Browser run with a mock server (`dev/serve.js`) | Whole flow through the UI with the "Local" provider: success, 401, 429, cut-off reply, stop, copy prompt, bad address, unreachable server; key storage (session / remembered / forgotten); the call built for Anthropic captured with a stubbed `fetch`; 375, 768 px and desktop, light and dark, no horizontal scroll, touch targets ≥ 44 px | pass (manual run, 2026-10-01) | `node dev/serve.js`, open `http://localhost:8123`, choose Local with address `http://localhost:8124/v1` |
 

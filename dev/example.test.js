@@ -37,3 +37,7 @@ test("app opens in English: no language detection in the scripts", () => {
   const app = fs.readFileSync(path.join(root, "app.js"), "utf8") + fs.readFileSync(path.join(root, "tool.js"), "utf8");
   assert.ok(!/navigator\.language/.test(app));
 });
+
+test("the generic HTTP error message mentions the API key (some providers answer 400 for a bad key)", () => {
+  assert.match(I18n.strings.en["err.http"], /API key/); assert.match(I18n.strings.it["err.http"], /chiave API/); assert.match(I18n.strings.es["err.http"], /clave API/);
+});
