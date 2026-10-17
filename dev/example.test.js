@@ -26,7 +26,7 @@ test("keys used in index.html and tool.js exist", () => {
   const tool = fs.readFileSync(path.join(root, "tool.js"), "utf8");
   const prov = fs.readFileSync(path.join(root, "providers.js"), "utf8");
   const used = new Set();
-  for (const m of html.matchAll(/data-i18n(?:-placeholder|-aria)?="([^"]+)"/g)) used.add(m[1]);
+  for (const m of html.matchAll(/data-i18n(?:-placeholder|-aria|-href)?="([^"]+)"/g)) used.add(m[1]);
   for (const m of tool.matchAll(/\bt\("([a-zA-Z0-9.]+)"/g)) used.add(m[1]);
   for (const m of tool.matchAll(/"(err\.[a-zA-Z]+|out\.[a-zA-Z]+|status\.[a-zA-Z]+)"/g)) used.add(m[1]);
   for (const m of prov.matchAll(/"(err\.[a-zA-Z]+)"/g)) used.add(m[1]);

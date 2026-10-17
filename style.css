@@ -84,7 +84,18 @@ select { min-width: 96px; }
 .opts .field select { width: 100%; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
-.foot { max-width: 44rem; margin: 20px auto 0; padding: 14px 0 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink2); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.foot { max-width: 44rem; margin: 20px auto 0; padding: 14px 0 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink2); display: grid; gap: 14px; }
+.foot__line { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+
+/* tip card: the jar of onairgarage.com, one line and a cherry pill (the same in every OnAir Garage app) */
+.tip { display: flex; align-items: center; gap: 14px; padding: 10px 14px; background: var(--panel2); border: 1px solid var(--line); border-radius: 6px; }
+.tip__art { flex: none; display: block; line-height: 0; }
+.tip__art img { width: 72px; height: auto; transition: transform .15s ease; }
+.tip__art:hover img { transform: rotate(-4deg) scale(1.06); }
+.tip__body { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+.tip__text { margin: 0; font-size: 14px; color: var(--ink2); }
+.tip__btn { display: inline-flex; align-items: center; min-height: 32px; padding: 4px 14px; border: 2px solid #fbf4e4; border-radius: 99px; background: #c8232c; color: #fbf4e4; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; }
+.tip__btn:hover { background: #a91f27; }
 .help { width: min(720px, calc(100% - 24px)); max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); box-shadow: 0 12px 44px rgba(0,0,0,.5); }
 .help::backdrop { background: rgba(20,12,6,.6); }
 .help__head { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 18px; background: var(--panel); border-bottom: 1px solid var(--line); }
@@ -106,4 +117,14 @@ select { min-width: 96px; }
   .help { width: calc(100% - 16px); max-height: calc(100dvh - 16px); }
   .update { width: calc(100% - 24px); }
 }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+/* touch screens: every control at least 44 x 44 px (the look on a computer does not change) */
+@media (pointer: coarse) {
+  .skip { min-height: 44px; display: inline-flex; align-items: center; }
+  .check { padding-left: 8px; min-width: 44px; }
+  .check input { width: 28px; height: 28px; }
+  .foot__line { align-items: center; }
+  .foot__line a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; }
+  .tip__btn { min-height: 44px; padding-inline: 18px; }
+}
+@media (max-width: 560px) { .tip__art img { width: 64px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } .tip__art:hover img { transform: none; } }

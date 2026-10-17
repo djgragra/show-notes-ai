@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "2026.10.2";                       // keep in sync with sw.js CACHE_VERSION, the footer and README
+  var VERSION = "2026.10.3";                       // keep in sync with sw.js CACHE_VERSION, the footer and README
   var STORE = "com.onairgarage.shownotesai.";
   var I18n = window.AppI18n;
 
@@ -23,6 +23,8 @@
     for (var i = 0; i < nodes.length; i++) nodes[i].textContent = t(nodes[i].getAttribute("data-i18n"));
     var ph = document.querySelectorAll("[data-i18n-placeholder]");
     for (var j = 0; j < ph.length; j++) ph[j].setAttribute("placeholder", t(ph[j].getAttribute("data-i18n-placeholder")));
+    var hr = document.querySelectorAll("[data-i18n-href]");          // links whose address depends on the language (the tip page of the site)
+    for (var h = 0; h < hr.length; h++) hr[h].setAttribute("href", t(hr[h].getAttribute("data-i18n-href")));
     var ar = document.querySelectorAll("[data-i18n-aria]");
     for (var k = 0; k < ar.length; k++) ar[k].setAttribute("aria-label", t(ar[k].getAttribute("data-i18n-aria")));
     document.title = t("app.title");

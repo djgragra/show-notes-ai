@@ -6,7 +6,7 @@ Turn a radio show transcript or outline into ready-to-publish show notes with th
 - Web app: https://onairgarage.com/apps/show-notes-ai/
 - Author: Graziano Melzi · OnAir Garage — hello@onairgarage.com
 - License: MIT (see `LICENSE`)
-- Version: 2026.10.2
+- Version: 2026.10.3
 
 ## What it does
 
@@ -65,12 +65,13 @@ Results as of October 2026. This is not a certified tool; it does not validate t
 |---|---|---|---|
 | Mock data per provider (`dev/providers.test.js`) | Request URL, headers and body for each provider; reply parsing; truncation flags; empty/malformed replies; the key never in a URL or body; local address limited to localhost | 12 tests pass | `node --test dev/providers.test.js` |
 | Prompt tests (`dev/prompt.test.js`) | Transcript only in the user message; safety rules always present; options change the instructions; fallbacks | 7 tests pass | `node --test dev/prompt.test.js` |
-| Static-app rules (`dev/static.test.js`) | CSP `connect-src` equals the provider list; no inline code; relative paths; precache complete; versions aligned; no `console` in the tool; WCAG AA contrast (≥ 4.5:1) of text, accent and button colours in both themes | 6 tests pass | `node --test dev/static.test.js` |
+| Static-app rules (`dev/static.test.js`) | CSP `connect-src` equals the provider list; no inline code; relative paths; precache complete; versions aligned; no `console` in the tool; WCAG AA contrast (≥ 4.5:1) of text, accent and button colours in both themes; the tip card (texts in en/it/es, the jar and the pill link to the support page of the site in the app's language, jar precached); the manifest screenshots and their real size; the 44 px rule for touch screens in the style sheet; the release workflow | 10 tests pass | `node --test dev/static.test.js` |
 | Translations (`dev/example.test.js`) | Same keys and placeholders in en/it/es; every key used by the page exists; the generic HTTP error message mentions the API key | 6 tests pass | `node --test dev/example.test.js` |
+| Touch targets and desktop look (Playwright, 2026-10-17) | With a touch emulation (`pointer: coarse`, 375 px) every button, link, select, summary, text field and the label of the "Remember" box measures at least 44 × 44 px (before: the box itself 22 × 22, the footer links 21 px high); on a computer (1280 px) the page above the footer is identical pixel by pixel before and after; no horizontal scroll at 375 px; no console errors | pass (manual run) | not scripted |
 | Providers' CORS (`dev/check-cors.sh`) | Each provider answers the browser preflight from `https://onairgarage.com` and allows the headers the app sends (no key and no text sent) | 5/5 pass on 2026-10-01 | `bash dev/check-cors.sh` |
 | Browser run with a mock server (`dev/serve.js`) | Whole flow through the UI with the "Local" provider: success, 401, 429, cut-off reply, stop, copy prompt, bad address, unreachable server; key storage (session / remembered / forgotten); the call built for Anthropic captured with a stubbed `fetch`; 375, 768 px and desktop, light and dark, no horizontal scroll, touch targets ≥ 44 px | pass (manual run, 2026-10-01) | `node dev/serve.js`, open `http://localhost:8123`, choose Local with address `http://localhost:8124/v1` |
 
-**Not validated:** live calls to any provider with a real key (none was used in development); the quality, accuracy or tone of any model's output; Safari, iPhone and Android behaviour; installation and offline use on real devices; a local Ollama or LM Studio server called from the deployed page. These are left to testing on real devices and accounts.
+**Not validated:** touch use on a real phone or tablet (the 44 px rule was measured with an emulated touch screen); the look of the install dialog with the screenshots on Android and iOS; live calls to any provider with a real key (none was used in development); the quality, accuracy or tone of any model's output; Safari, iPhone and Android behaviour; installation and offline use on real devices; a local Ollama or LM Studio server called from the deployed page. These are left to testing on real devices and accounts.
 
 ## Sources to re-check
 
@@ -103,10 +104,11 @@ Tests (Node 18+): `node --test dev/*.test.js`. To try the whole flow without a k
 
 ## Structure
 
-- `index.html`, `style.css`, `app.js` (shell: language, theme, install, update), `tool.js` (setup, key, generation, copy), `providers.js` (requests and replies per provider), `prompt.js` (instructions for the model), `i18n.js`, `sw.js`, `manifest.json`, `icons/` — the app (served under `/apps/show-notes-ai/`).
+- `index.html`, `style.css`, `app.js` (shell: language, theme, install, update), `tool.js` (setup, key, generation, copy), `providers.js` (requests and replies per provider), `prompt.js` (instructions for the model), `i18n.js`, `sw.js`, `manifest.json`, `icons/` (with the tip jar), `screenshots/` (the two pictures the browser shows when you install the app: wide and narrow, made from the app with invented text) — the app (served under `/apps/show-notes-ai/`).
 - `dev/` — tests, mock server, CORS check and the icon generator; not deployed.
+- `.github/workflows/` — `ci.yml` (tests on every pull request) and `release.yml` (started by hand on `main` with the version: checks that it is the one in `app.js` and `sw.js`, runs the tests, creates the tag and the release).
 
-Static-app constraints: relative paths only, strict CSP (no inline scripts or styles; `connect-src` lists only the provider origins and localhost), service worker scoped to the app folder. Bump `CACHE_VERSION` in `sw.js` and `VERSION` in `app.js` on every release. Versions are `year.month.number` (e.g. `2026.10.1`), tags `v2026.10.1`.
+Static-app constraints: relative paths only, strict CSP (no inline scripts or styles; `connect-src` lists only the provider origins and localhost), service worker scoped to the app folder. Bump `CACHE_VERSION` in `sw.js` and `VERSION` in `app.js` on every release. Versions are `year.month.number` (e.g. `2026.10.3`), tags `v2026.10.3`, created by the `Release` workflow.
 
 ## Credits
 
