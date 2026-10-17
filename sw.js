@@ -2,12 +2,12 @@
    © 2026 Graziano Melzi · OnAir Garage — MIT License
 
    Bump CACHE_VERSION whenever any file below changes; old caches are dropped on activate. */
-const CACHE_VERSION = "v2026.10.2";
+const CACHE_VERSION = "v2026.10.3";
 const CACHE_NAME = "shownotesai-" + CACHE_VERSION;
 
 const PRECACHE_URLS = [
   "./", "./index.html", "./manifest.json", "./style.css", "./i18n.js", "./providers.js", "./prompt.js", "./app.js", "./tool.js",
-  "./icons/icon.svg", "./icons/icon-180.png", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png"
+  "./icons/icon.svg", "./icons/icon-180.png", "./icons/icon-192.png", "./icons/icon-512.png", "./icons/icon-maskable-512.png", "./icons/tip-jar.webp"
 ];
 
 self.addEventListener("install", (event) => {

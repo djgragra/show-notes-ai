@@ -39,5 +39,21 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Paste a transcript or a running order, pick the format, tone and length"
+    },
+    {
+      "src": "screenshots/narrow.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "The same page on a phone: one column, big touch targets"
+    }
   ]
 }
