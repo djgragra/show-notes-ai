@@ -6,6 +6,7 @@ Turn a radio show transcript or outline into ready-to-publish show notes with th
 - Web app: https://onairgarage.com/apps/show-notes-ai/
 - Author: Graziano Melzi · OnAir Garage — hello@onairgarage.com
 - License: MIT (see `LICENSE`)
+- Manual: attached to every release as three PDFs, English (`Show-Notes-Generator-Manual-EN-<version>.pdf`), Italian (`-IT-`) and Spanish (`-ES-`); the source is in `dev/manual/` (`python3 dev/manual/build.py <version> <folder>` makes the PDFs; it needs Chrome or Chromium).
 - Version: 2026.10.3
 
 ## What it does
